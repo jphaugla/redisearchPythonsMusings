@@ -23,7 +23,7 @@ def main():
     # redis_pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
     print("Starting productimport.py at " + str(datetime.datetime.now()))
     #  open the file to read as csv
-    with open('../data/files.index.csv') as csv_file:
+    with open('../data/files.index.100.csv') as csv_file:
         # file is tab delimited
         csv_reader = csv.reader(csv_file, delimiter='\t', quoting=csv.QUOTE_NONE)
         prod_idx = 0
@@ -62,9 +62,15 @@ def main():
             else:
                 product_string = "prodid:" + product_id
             keyName = product_string + supplier_string
-            categoryDoc = catClient.load_document("category:" + categ_id)
+            # categoryDoc = catClient.load_document("category:" + categ_id)
+            results = catClient.search("@ID:" + categ_id)
             # print("keyName=" + keyName + " categ_id=" + categ_id + " product_id=" + product_id + " m_product_id=" + m_product_id)
-            categoryName = categoryDoc.__dict__.get("name", categ_id)
+            # categoryName = categoryDoc.__dict__.get("name", categ_id)
+            # print("results.total " + str(results.total))
+            # print("results " + results.docs[0].name)
+            # print("categoryDoc.total " + str(categoryDoc.
+            # print("categoryDoc " + categoryDoc.__doc__.name)
+            categoryName = results.docs[0].name
             client.add_document(keyName, product_id=product_id, updated=str(row[2]), quality=str(row[3]),
                                 supplier_id=str(row[4]), prod_id=str(row[5]), catid=categ_id,
                                 m_prod_Id=m_product_id, ean_upc=str(row[8]), on_market=str(row[9]),
