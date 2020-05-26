@@ -1,0 +1,4 @@
+ft.search product * return 2 model_name prod_id 
+ft.search product @model_name:iphone return 2 model_name prod_id
+ft.search product @model_name:iphone return 3 model_name prod_id m_supplier_name
+
