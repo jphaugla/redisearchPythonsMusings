@@ -1,9 +1,9 @@
-# redisPythonProductCatalog
-A simple product catalog solution based on icecat files
+# redisearchPythonProductCatalog
+A search product catalog solution based on icecat files
 ## Initial project setup
 Get this github code
 ```bash 
-get clone https://github.com/jphaugla/redisPythonProductCatalog.git
+get clone https://github.com/jphaugla/redisearchPythonProductCatalog.git
 ```
 Two options for setting the environment are given:  
   * run with docker-compose using a flask and redis container
@@ -36,9 +36,13 @@ gunzip CategoriesList.xml.gz
 docker exec -it flask python categoryImport.py
 ```
 ### load Products
-This can take quite a long time (maybe 15 minutes)
+This can take quite a long time (maybe 15-30 minutes)
 ```bash
 docker exec -it flask python productImport.py
+```
+### run queries
+```bash
+redis-cli  < scripts/queries.txt
 ```
   * start flask app server
 This only works with python2-hopefully can fix the bug soon
@@ -75,7 +79,7 @@ pip install flask
 ```
 6. clone repository
 ```bash
-git clone https://github.com/jphaugla/redisPythonProductCatalog.git
+git clone https://github.com/jphaugla/redisearchPythonProductCatalog.git
 ```
 7. install redis
 ```bash
