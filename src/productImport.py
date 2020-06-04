@@ -4,8 +4,8 @@ import datetime
 
 from redisearch import Client, AutoCompleter, Suggestion
 
-client = Client('product', 'localhost', 6379)
-catClient = Client('category', 'localhost', 6379)
+client = Client('product', 'redis', 6379)
+catClient = Client('category', 'redis', 6379)
 ac = AutoCompleter('ac', conn=client.redis)
 
 maxInt = sys.maxsize
@@ -24,7 +24,7 @@ def main():
     # redis_pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
     print("Starting productimport.py at " + str(datetime.datetime.now()))
     #  open the file to read as csv
-    with open('../data/files.index.csv') as csv_file:
+    with open('data/files.index.csv') as csv_file:
         # file is tab delimited
         csv_reader = csv.reader(csv_file, delimiter='\t', quoting=csv.QUOTE_NONE)
         prod_idx = 0

@@ -16,7 +16,7 @@ bootstrap = Bootstrap()
 if environ.get('REDIS_SERVER') is not None:
     redis_server = environ.get('REDIS_SERVER')
 else:
-    redis_server = 'localhost'
+    redis_server = 'redis'
 
 if environ.get('REDIS_PORT') is not None:
     redis_port = int(environ.get('REDIS_PORT'))
@@ -107,4 +107,4 @@ if __name__ == '__main__':
     bootstrap.init_app(app)
     nav.init_app(app)
     app.debug = True
-    app.run(port=5005, host="0.0.0.0")
+    app.run(port=5000, host="0.0.0.0")

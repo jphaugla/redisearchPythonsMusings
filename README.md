@@ -31,13 +31,19 @@ cd data
 unzip files.index.csv.zip
 gunzip CategoriesList.xml.gz
 ```
+### create schema
+```bash
+cd src
+./createCatSchema.sh
+redis-cli<createSchema.txt
+```
 ### load categories
 This is pretty quick-less than a minute
 ```bash
 docker exec -it jupyter python /home/jovyan/scripts/categoryImport.py
 ```
 ### load Products
-This can take quite a long time (maybe 45-60 minutes)
+This can take quite a long time (maybe 25 minutes)
 Loading over 1.2 million rows with a category name lookup for each product
 ```bash
 docker exec -it jupyter python /home/jovyan/scripts/productImport.py

@@ -1,11 +1,11 @@
 import xml.etree.ElementTree as ET
 from redisearch import Client, AutoCompleter, Suggestion
 
-client = Client('category', 'localhost', 6379)
+client = Client('category', 'redis', 6379)
 ac = AutoCompleter('ac_cat', conn=client.redis)
 
 def main():
-    with open('../data/CategoriesList.xml') as xml_file:
+    with open('data/CategoriesList.xml') as xml_file:
         # create element tree object
         tree = ET.parse(xml_file)
 
