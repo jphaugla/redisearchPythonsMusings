@@ -2,10 +2,11 @@ import csv
 import sys
 import datetime
 
-from redisearch import Client
+from redisearch import Client, AutoCompleter, Suggestion
 
 client = Client('product', 'localhost', 6379)
 catClient = Client('category', 'localhost', 6379)
+ac = AutoCompleter('ac', conn=client.redis)
 
 maxInt = sys.maxsize
 
@@ -23,7 +24,7 @@ def main():
     # redis_pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
     print("Starting productimport.py at " + str(datetime.datetime.now()))
     #  open the file to read as csv
-    with open('../data/files.index.100.csv') as csv_file:
+    with open('../data/files.index.csv') as csv_file:
         # file is tab delimited
         csv_reader = csv.reader(csv_file, delimiter='\t', quoting=csv.QUOTE_NONE)
         prod_idx = 0
@@ -62,19 +63,26 @@ def main():
             else:
                 product_string = "prodid:" + product_id
             keyName = product_string + supplier_string
-            # categoryDoc = catClient.load_document("category:" + categ_id)
-            results = catClient.search("@ID:" + categ_id)
+            categoryDoc = catClient.load_document("category:" + categ_id)
+            model_name = str(row[11])
+            # results = catClient.search("@ID:" + categ_id)
             # print("keyName=" + keyName + " categ_id=" + categ_id + " product_id=" + product_id + " m_product_id=" + m_product_id)
-            # categoryName = categoryDoc.__dict__.get("name", categ_id)
+            categoryName = str(categoryDoc.__dict__.get("name"))
+            if categoryName and not categoryName.isspace():
+                useName = categoryName
+            else:
+                useName = "Unknown Category Name ID=" + categ_id
+            # print("categoryName =" + categoryName)
             # print("results.total " + str(results.total))
             # print("results " + results.docs[0].name)
             # print("categoryDoc.total " + str(categoryDoc.
             # print("categoryDoc " + categoryDoc.__doc__.name)
-            categoryName = results.docs[0].name
+            # categoryName = results.docs[0].nam    e
+            ac.add_suggestions(Suggestion(model_name, 1.0))
             client.add_document(keyName, product_id=product_id, updated=str(row[2]), quality=str(row[3]),
                                 supplier_id=str(row[4]), prod_id=str(row[5]), catid=categ_id,
                                 m_prod_Id=m_product_id, ean_upc=str(row[8]), on_market=str(row[9]),
-                                country_market=str(row[10]), model_name=str(row[11]),
+                                country_market=str(row[10]), model_name=model_name,
                                 product_view=str(row[12]),
                                 high_pic=str(row[13]),
                                 high_pic_size=ifnull(str(row[14])),
@@ -84,7 +92,7 @@ def main():
                                 m_supplier_name=str(row[18]), ean_upc_is_approved=str(row[19]),
                                 limited=str(row[20]),
                                 date_added=str(row[21]),
-                                category_name=categoryName
+                                category_name=useName
                                 )
             # print("column value " + col)
             # alternative product keys[16

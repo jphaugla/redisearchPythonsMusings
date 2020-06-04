@@ -32,59 +32,37 @@ unzip files.index.csv.zip
 gunzip CategoriesList.xml.gz
 ```
 ### load categories
+This is pretty quick-less than a minute
 ```bash
-docker exec -it flask python categoryImport.py
+docker exec -it jupyter python /home/jovyan/scripts/categoryImport.py
 ```
 ### load Products
-This can take quite a long time (maybe 15-30 minutes)
+This can take quite a long time (maybe 45-60 minutes)
+Loading over 1.2 million rows with a category name lookup for each product
 ```bash
-docker exec -it flask python productImport.py
+docker exec -it jupyter python /home/jovyan/scripts/productImport.py
 ```
-### run queries
+### Add python requirements
+```bash
+docker exec -it jupyter pip install -r /home/jovyan/scripts/requirements.txt
+### run queries using queries.txt or run indivual queries from redis-cli
 ```bash
 redis-cli  < scripts/queries.txt
 ```
+#### from redis-cli
+```bash
+redis-cli 
+ft.search product * return 2 model_name prod_id
+ft.search product @model_name:iphone return 2 model_name prod_id
+ft.search product @m_supplier_name:HP return 2 model_name category_name
+ft.search product @category_name:Calculators return 2 model_name country_market
+ft.search product @category_name:Calculators@country_market:{GB} return 2 model_name country_market
+exit
+```
   * start flask app server
-This only works with python2-hopefully can fix the bug soon
  ```bash
- docker exec -it flask python appy.py
+ docker exec -it jupyter python /home/jovyan/scripts/app.py
  ```
-  * run API tests
-Note:  there are multiple API tests in the file but only one should be run at a time
-So, the tests not to be run should be commented out.
- ```bash
-./scripts/sampleput.sh
-```
-##  installing on mac
-1. install xcode
-2. install homebrew
-```bash
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-```
-3. verify homebrew
-```bash
-brew doctor
-```
-4. install python
-```bash
-brew install python
-```
-5. install redis-py
-```bash
-pip install redis
-```
-6.  install flask
-```bash
-pip install flask
-```
-6. clone repository
-```bash
-git clone https://github.com/jphaugla/redisearchPythonProductCatalog.git
-```
-7. install redis
-```bash
-brew install redis
-```
-8. start redis 
-	redis-server /usr/local/etc/redis.conf
+### test the website
+ [localhost link](http://localhost:5000)
 

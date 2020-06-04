@@ -1,0 +1,61 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}RediSearch Autocomplete{% endblock %}
+
+{% block navbar %}
+{{ nav.top.render() }}
+{% endblock %}
+
+{% block metas %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+{% block styles %}
+  <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//jqueryui.com/resources/demos/style.css">
+  <style>
+  .ui-autocomplete-loading {
+    background: white url("http://jqueryui.com/resources/demos/autocomplete/images/ui-anim_basic_16x16.gif") right center no-repeat;
+  }
+  </style>
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    function log( message ) {
+      $( "<div>" ).text( message ).prependTo( "#log" );
+      $( "#log" ).scrollTop( 0 );
+    }
+ 
+    $( "#model_name" ).autocomplete({
+      source: "/autocomplete",
+      minLength: 2,
+      select: function( event, ui ) {
+        log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+      }
+    });
+  } );
+  </script>
+  {% endblock %}
+
+{% block content %}
+
+<div class="container">
+<form action = "/display" method = "POST">
+  <div class="form-group">
+    <label for="model_name">Search Model Name</label>
+    <input id="model_name" class="form-control" name="model_name">
+  </div>
+  <div class="form-group">
+    <br><br>
+    <p><input type = "submit" value = "submit" /></p>
+  </div>
+</form>
+  <p>This is a fuzzy search so feel free to search for ipone to get iPhone or laptap to get laptop</p>
+</div>
+{% endblock %}
+ 

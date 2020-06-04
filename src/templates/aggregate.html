@@ -1,0 +1,37 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}RediSearch Aggregations{% endblock %}
+
+{% block navbar %}
+{{ nav.top.render() }}
+{% endblock %}
+
+{% block metas %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+{% endblock %}
+
+{% block styles %}
+  <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="//jqueryui.com/resources/demos/style.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+<form action = "/showagg" method = "POST">
+  <div class="form-group">
+    <label for="agg">Select a Field:</label>
+    <select id="agg" name="agg">
+      <option value="@category_name">Category</option>
+      <option value="@m_supplier_name">Supplier</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <p><input type = "submit" value = "submit" /></p>
+  </div>
+</form>
+</div>
+
+{% endblock %}
+ 

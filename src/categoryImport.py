@@ -1,8 +1,8 @@
 import xml.etree.ElementTree as ET
-from redisearch import Client
+from redisearch import Client, AutoCompleter, Suggestion
 
 client = Client('category', 'localhost', 6379)
-
+ac = AutoCompleter('ac_cat', conn=client.redis)
 
 def main():
     with open('../data/CategoriesList.xml') as xml_file:
@@ -28,10 +28,10 @@ def main():
                 # print("cat_child is " + str(cat_child))
                 if cat_child.tag == 'Name' and cat_child.attrib['langid'] == '1':
                     cat_name = cat_child.attrib['Value']
-                    print("cat_name=" + cat_name)
+                    # print("cat_name=" + cat_name)
                 elif cat_child.tag == 'ParentCategory' and cat_id != "1":
                     parent_cat_id = cat_child.attrib['ID']
-                    print("parent_cat_id is " + parent_cat_id)
+                    # print("parent_cat_id is " + parent_cat_id)
                     for parent_child in cat_child:
                         # print("parent_child is " + str(parent_child))
                         for name in parent_child:
@@ -41,6 +41,7 @@ def main():
                     client.add_document("category:" + str(cat_id), ID=str(cat_id), lowpic=str(cat.attrib['LowPic']),
                                         thumbpic=str(cat.attrib['ThumbPic']),name=cat_name,
                                         parentcatid=parent_cat_id, parentcatname=parent_cat_name)
+                    ac.add_suggestions(Suggestion(cat_name, 1.0))
             if cat_cntr % 1000 == 0:
                 print(str(cat_cntr) + " categories loaded")
 
