@@ -1,5 +1,6 @@
 # redisearchPythonProductCatalog
 A search product catalog solution based on icecat files
+# the autosuggest code and entire UI is shamelessly stolen from [redisearch fortune 500 companies](https://github.com/Redislabs-Solution-Architects/redis_autocomplete_python)
 ## Initial project setup
 Get this github code
 ```bash 
