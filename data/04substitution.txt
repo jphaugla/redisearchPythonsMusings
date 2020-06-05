@@ -1,0 +1,2 @@
+Checking to see if Kathy is found by searching for version with "C" instead of "K".
+
