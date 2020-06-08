@@ -1,0 +1,32 @@
+version: '3'
+services:
+  redis:
+    image: "redislabs/redisearch:latest"
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis:/data
+      - ./src/:/src
+
+  jupyter:
+    image: jupyter/minimal-notebook
+    volumes:
+      - ./src/:/home/jovyan/scripts
+      - ./data:/home/jovyan/data
+    ports:
+      - 8888:8888
+      - 5000:5000
+    container_name: jupyter
+    depends_on:
+      - redis
+
+  insight:
+    image: "redislabs/redisinsight:latest"
+    container_name: insight
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./redisinsight:/db
+    depends_on:
+      - redis
