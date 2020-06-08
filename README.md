@@ -1,15 +1,12 @@
 # redisearchPythonProductCatalog
 A search product catalog solution based on icecat files
-# the autosuggest code and entire UI is shamelessly stolen from [redisearch fortune 500 companies](https://github.com/Redislabs-Solution-Architects/redis_autocomplete_python)
+#### the autosuggest code and entire UI is shamelessly stolen from [redisearch fortune 500 companies](https://github.com/Redislabs-Solution-Architects/redis_autocomplete_python)
 ## Initial project setup
 Get this github code
 ```bash 
 get clone https://github.com/jphaugla/redisearchPythonProductCatalog.git
 ```
-Two options for setting the environment are given:  
-  * run with docker-compose using a flask and redis container
-  * installing for mac os
-docker-compose is much easier and is main method documented here
+This github is setup to run with docker-compose using a jupyter and redis container
 ## docker compose startup
 ```bash
 docker-compose up -d --build
@@ -20,30 +17,31 @@ This is an implementation of a product Catalog using data download from
 
 ### Download the datafiles to the data subdirectory
 To download the datafiles, a free login id from icecat is required
-Once effectively logged in to icecat need to retrieve these two files
-  * https://data.Icecat.biz/export/freexml/refs/CategoriesList.xml.gz
-  * https://data.icecat.biz/export/freexml/nl/files.index.xml.gz
+Once effectively registed to icecat need to retrieve these two files using the registered username and password.  The quotes are needed.
+```bash
+curl -u 'yourUN':'yourPW' https://data.Icecat.biz/export/freexml/refs/CategoriesList.xml.gz -o CategoriesList.xml.gz
+curl -u 'yourUN':'yourPW' https://data.Icecat.biz/export/freexml/files.index.csv.gz -o files.index.csv.gz
+```
 
 ### unzip data files
 The data file directory is mapped 
 using docker-compose volume to /data in flask container
 ```bash
 cd data
-unzip files.index.csv.zip
+gunzip files.index.csv.gz
 gunzip CategoriesList.xml.gz
 ```
 ### create schema
 ```bash
-cd src
-./createCatSchema.sh
-redis-cli<createSchema.txt
-```bash
 docker exec -i redis bash <<EOF
 redis-cli < /src/createSchema.txt
+echo "ft.create category schema ID TEXT lowpic TEXT NOINDEX thumbpic TEXT NOINDEX name TEXT" |redis-cli
 exit
 EOF
 ```
-docker exec -it redis redis-cli 
+### Add python requirements
+```bash
+docker exec -it jupyter pip install -r /home/jovyan/scripts/requirements.txt
 ```
 ### load categories
 This is pretty quick-less than a minute
@@ -56,9 +54,6 @@ Loading over 1.2 million rows with a category name lookup for each product
 ```bash
 docker exec -it jupyter python /home/jovyan/scripts/productImport.py
 ```
-### Add python requirements
-```bash
-docker exec -it jupyter pip install -r /home/jovyan/scripts/requirements.txt
 ### run queries  from redis-cli
 #### from redis-cli (check for new queries in src/queries.txt)
 ```bash
@@ -84,6 +79,7 @@ exit
 EOF
 ```
 ### load test files
+```bash
 docker exec -it jupyter python /home/jovyan/scripts/fileLoad.py
 ```
 ### start up the cli through the redis container
@@ -95,7 +91,7 @@ docker exec -it redis redis-cli
 # sample queries
 exact match
 ```bash
-ft.search myIndex @body "Haugland"
+ft.search myIndex @body:"Haugland"
 ```
 
 match on Jon
