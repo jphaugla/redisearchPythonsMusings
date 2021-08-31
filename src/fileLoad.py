@@ -1,7 +1,7 @@
 import os
 from redisearch import Client, TextField, NumericField, Query
 
-client = Client('myIndex', 'redis', 6379)
+client = Client('myIndex', '34.139.251.110', 15999)
 print("connect successful")
 # Creating the index definition and schema
 # client.drop_index();

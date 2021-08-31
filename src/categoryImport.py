@@ -1,7 +1,7 @@
 import xml.etree.ElementTree as ET
 from redisearch import Client, AutoCompleter, Suggestion
 
-client = Client('category', 'redis', 6379)
+client = Client('category', '34.139.251.110', 15999)
 ac = AutoCompleter('ac_cat', conn=client.redis)
 
 def main():
@@ -36,12 +36,13 @@ def main():
                         # print("parent_child is " + str(parent_child))
                         for name in parent_child:
                             # print("name under parent child is " + str(name))
-                            if name.tag == 'Name' and name.attrib['langid']  == '1':
+                            if name.tag == 'Name' and name.attrib['langid'] == '1':
                                  parent_cat_name = name.attrib['Value']
                     client.add_document("category:" + str(cat_id), ID=str(cat_id), lowpic=str(cat.attrib['LowPic']),
-                                        thumbpic=str(cat.attrib['ThumbPic']),name=cat_name,
+                                        thumbpic=str(cat.attrib['ThumbPic']), name=cat_name,
                                         parentcatid=parent_cat_id, parentcatname=parent_cat_name)
-                    ac.add_suggestions(Suggestion(cat_name, 1.0))
+                    # getting error with this suggestions code in place
+                    # ac.add_suggestions(Suggestion(cat_name, 1.0))
             if cat_cntr % 1000 == 0:
                 print(str(cat_cntr) + " categories loaded")
 
