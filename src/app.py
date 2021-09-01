@@ -15,13 +15,18 @@ bootstrap = Bootstrap()
 
 if environ.get('REDIS_SERVER') is not None:
     redis_server = environ.get('REDIS_SERVER')
+    print("passed in redis server is " + redis_server)
 else:
     redis_server = 'redis'
+    print("no passed in redis server variable ")
 
 if environ.get('REDIS_PORT') is not None:
     redis_port = int(environ.get('REDIS_PORT'))
+    print("passed in redis port is " + str(redis_port))
 else:
     redis_port = 6379
+    print("no passed in redis port variable ")
+
 
 if environ.get('REDIS_PASSWORD') is not None:
     redis_password = environ.get('REDIS_PASSWORD')

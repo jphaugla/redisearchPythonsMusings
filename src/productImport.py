@@ -13,20 +13,24 @@ def main():
     # global redis_pool
     # print("PID %d: initializing redis pool..." % os.getpid())
     # redis_pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
+    print("Starting productimport.py at " + str(datetime.datetime.now()))
     if environ.get('REDIS_SERVER') is not None:
         redis_server = environ.get('REDIS_SERVER')
+        print("passed in redis server is " + redis_server)
     else:
         redis_server = 'redis'
+        print("no passed in redis server variable ")
 
     if environ.get('REDIS_PORT') is not None:
         redis_port = int(environ.get('REDIS_PORT'))
+        print("passed in redis port is " + str(redis_port))
     else:
         redis_port = 6379
+        print("no passed in redis port variable ")
 
-    print("Starting productimport.py at " + str(datetime.datetime.now()))
     conn = redis.StrictRedis(host=redis_server, port=redis_port, db=0, charset="utf-8", decode_responses=True)
     #  open the file to read as csv
-    with open('data/files.index.csv') as csv_file:
+    with open('/data/files.index.csv') as csv_file:
         # file is tab delimited
         csv_reader = csv.DictReader(csv_file, delimiter='\t', quoting=csv.QUOTE_NONE)
         prod_idx = 0
