@@ -1,10 +1,11 @@
 import xml.etree.ElementTree as ET
-from redisearch import Client, AutoCompleter, Suggestion
+import redis
 
-client = Client('category', '34.139.251.110', 15999)
-ac = AutoCompleter('ac_cat', conn=client.redis)
+REDIS_HOST = '34.138.134.33'
+
 
 def main():
+    conn = redis.StrictRedis(REDIS_HOST, port=15999, charset="utf-8", decode_responses=True)
     with open('data/CategoriesList.xml') as xml_file:
         # create element tree object
         tree = ET.parse(xml_file)
@@ -22,27 +23,22 @@ def main():
             # print("cat.attribute is " + str(cat.attrib))
             cat_cntr += 1
             cat_id = cat.attrib['ID']
-            cat_score = cat.attrib['Score']
             # print("ID is ", str(cat_id))
+
+            category_id = 'categ:' + cat_id
+            conn.hset(category_id, "ID", cat_id)
+            if cat.attrib['LowPic']:
+                conn.hset(category_id, "lowpic", cat.attrib['LowPic'])
+            if cat.attrib['ThumbPic']:
+                conn.hset(category_id, "thumbpic", cat.attrib['ThumbPic'])
             for cat_child in cat:
-                # print("cat_child is " + str(cat_child))
+                # category_id is
+                # print("cat_child.tag is " + str(cat_child.tag))
+                # print("cat_child.attribute is " + str(cat_child.attrib))
                 if cat_child.tag == 'Name' and cat_child.attrib['langid'] == '1':
                     cat_name = cat_child.attrib['Value']
-                    # print("cat_name=" + cat_name)
-                elif cat_child.tag == 'ParentCategory' and cat_id != "1":
-                    parent_cat_id = cat_child.attrib['ID']
-                    # print("parent_cat_id is " + parent_cat_id)
-                    for parent_child in cat_child:
-                        # print("parent_child is " + str(parent_child))
-                        for name in parent_child:
-                            # print("name under parent child is " + str(name))
-                            if name.tag == 'Name' and name.attrib['langid'] == '1':
-                                 parent_cat_name = name.attrib['Value']
-                    client.add_document("category:" + str(cat_id), ID=str(cat_id), lowpic=str(cat.attrib['LowPic']),
-                                        thumbpic=str(cat.attrib['ThumbPic']), name=cat_name,
-                                        parentcatid=parent_cat_id, parentcatname=parent_cat_name)
-                    # getting error with this suggestions code in place
-                    # ac.add_suggestions(Suggestion(cat_name, 1.0))
+                    # print("category name is " + cat_name)
+                    conn.hset(category_id, "Name", cat_name)
             if cat_cntr % 1000 == 0:
                 print(str(cat_cntr) + " categories loaded")
 

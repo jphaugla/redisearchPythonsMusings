@@ -7,7 +7,7 @@ from Product import Product
 maxInt = sys.maxsize
 
 
-REDIS_HOST = 'redis'
+REDIS_HOST = '34.138.134.33'
 
 
 def main():
@@ -15,7 +15,7 @@ def main():
     # print("PID %d: initializing redis pool..." % os.getpid())
     # redis_pool = redis.ConnectionPool(host='localhost', port=6379, db=0)
     print("Starting productimport.py at " + str(datetime.datetime.now()))
-    conn = redis.StrictRedis(host=REDIS_HOST, port=6379, db=0, charset="utf-8", decode_responses=True)
+    conn = redis.StrictRedis(host=REDIS_HOST, port=15999, db=0, charset="utf-8", decode_responses=True)
     pipe = conn.pipeline()
     #  open the file to read as csv
     with open('data/files.index.csv') as csv_file:

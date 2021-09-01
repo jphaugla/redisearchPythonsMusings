@@ -1,6 +1,6 @@
 ft.search product * return 2 model_name prod_id 
 ft.search product @model_name:iphone return 2 model_name prod_id
-ft.search product @m_supplier_name:HP return 2 model_name category_name
+ft.search product @m_supplier_name:HP return 3 model_name category_name m_supplier_name
 ft.search product @category_name:Calculators return 2 model_name country_market
 ft.search product @category_name:Calculators@country_market:{GB} return 2 model_name country_market
 
