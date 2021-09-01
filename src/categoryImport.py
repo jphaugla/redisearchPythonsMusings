@@ -22,7 +22,7 @@ def main():
 
     conn = redis.StrictRedis(redis_server, redis_port, charset="utf-8", decode_responses=True)
 
-    with open('/data/CategoriesList.xml') as xml_file:
+    with open('/home/jovyan/data/CategoriesList.xml') as xml_file:
         # create element tree object
         tree = ET.parse(xml_file)
 

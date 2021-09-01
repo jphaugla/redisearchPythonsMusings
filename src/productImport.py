@@ -30,7 +30,7 @@ def main():
 
     conn = redis.StrictRedis(host=redis_server, port=redis_port, db=0, charset="utf-8", decode_responses=True)
     #  open the file to read as csv
-    with open('/data/files.index.csv') as csv_file:
+    with open('/home/jovyan/data/files.index.csv') as csv_file:
         # file is tab delimited
         csv_reader = csv.DictReader(csv_file, delimiter='\t', quoting=csv.QUOTE_NONE)
         prod_idx = 0
