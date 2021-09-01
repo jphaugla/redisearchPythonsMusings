@@ -9,7 +9,7 @@ get clone https://github.com/jphaugla/redisearchPythonProductCatalog.git
 This github is setup to run with docker-compose using a jupyter and redis container
 ## docker compose startup
 ```bash
-docker-compose up -d --build
+docker-compose up -d 
 ```
 ## Code and File discussion
 This is an implementation of a product Catalog using data download from
