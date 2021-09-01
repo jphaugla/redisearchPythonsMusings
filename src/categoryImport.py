@@ -1,7 +1,8 @@
 import xml.etree.ElementTree as ET
 import redis
+from Category import Category
 
-REDIS_HOST = '34.138.134.33'
+REDIS_HOST = '35.231.60.254'
 
 
 def main():
@@ -21,16 +22,23 @@ def main():
             # print("starting in xml file")
             # print("cat.tag is " + str(cat.tag))
             # print("cat.attribute is " + str(cat.attrib))
+            next_category = Category()
             cat_cntr += 1
             cat_id = cat.attrib['ID']
             # print("ID is ", str(cat_id))
-
-            category_id = 'categ:' + cat_id
-            conn.hset(category_id, "ID", cat_id)
+            next_category.ID = str(cat_id)
+            # print("ID is " + next_category.ID)
+            next_category.Score = str(cat.attrib['Score'])
+            # category_id = 'categ:' + cat_id
+            # conn.hset(category_id, "ID", cat_id)
             if cat.attrib['LowPic']:
-                conn.hset(category_id, "lowpic", cat.attrib['LowPic'])
+                #     conn.hset(category_id, "lowpic", cat.attrib['LowPic'])
+                next_category.LowPic = str(cat.attrib['LowPic'])
+                # print("lowpic is " + next_category.LowPic)
             if cat.attrib['ThumbPic']:
-                conn.hset(category_id, "thumbpic", cat.attrib['ThumbPic'])
+                #     conn.hset(category_id, "thumbpic", cat.attrib['ThumbPic'])
+                next_category.ThumbPic = str(cat.attrib['ThumbPic'])
+                # print("thumbpic is " + next_category.ThumbPic)
             for cat_child in cat:
                 # category_id is
                 # print("cat_child.tag is " + str(cat_child.tag))
@@ -38,7 +46,19 @@ def main():
                 if cat_child.tag == 'Name' and cat_child.attrib['langid'] == '1':
                     cat_name = cat_child.attrib['Value']
                     # print("category name is " + cat_name)
-                    conn.hset(category_id, "Name", cat_name)
+                    next_category.set_category_name(cat_name)
+                    # print("category name is " + next_category.Name)
+                elif cat_child.tag == 'ParentCategory' and cat_id != "1":
+                    parent_cat_id = cat_child.attrib['ID']
+                    next_category.ParentCategoryID = parent_cat_id
+                    # print("parent_cat_id is " + parent_cat_id)
+                    for parent_child in cat_child:
+                        # print("parent_child is " + str(parent_child))
+                        for name in parent_child:
+                            # print("name under parent child is " + str(name))
+                            if name.tag == 'Name' and name.attrib['langid'] == '1':
+                                next_category.ParentCategoryName = name.attrib['Value']
+                    conn.hset(next_category.get_key(), mapping=next_category.__dict__)
             if cat_cntr % 1000 == 0:
                 print(str(cat_cntr) + " categories loaded")
 
