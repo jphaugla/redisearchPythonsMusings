@@ -1,7 +1,17 @@
 import os
 from redisearch import Client, TextField, NumericField, Query
 
-client = Client('myIndex', '34.139.251.110', 15999)
+if os.environ.get('REDIS_SERVER') is not None:
+    redis_server = os.environ.get('REDIS_SERVER')
+else:
+    redis_server = 'redis'
+
+if os.environ.get('REDIS_PORT') is not None:
+    redis_port = int(environ.os.get('REDIS_PORT'))
+else:
+    redis_port = 6379
+
+client = Client('myIndex', redis_server, redis_port)
 print("connect successful")
 # Creating the index definition and schema
 # client.drop_index();

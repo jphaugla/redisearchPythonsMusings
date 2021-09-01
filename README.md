@@ -35,7 +35,7 @@ gunzip CategoriesList.xml.gz
 ```bash
 docker exec -i redis bash <<EOF
 redis-cli < /src/createSchema.txt
-echo "ft.create category schema ID TEXT lowpic TEXT NOINDEX thumbpic TEXT NOINDEX name TEXT" |redis-cli
+redis-cli < /src/createCatSchema.txt
 exit
 EOF
 ```
@@ -45,6 +45,8 @@ docker exec -it jupyter pip install -r /home/jovyan/scripts/requirements.txt
 ```
 ### load categories
 This is pretty quick-less than a minute
+The redis node and port can be changed. The python code uses 2 environment variable REDIS_SERVER and REDIS_PORT.  The default is REDIS_SERVER=redis and REDIS_PORT=6379
+
 ```bash
 docker exec -it jupyter python /home/jovyan/scripts/categoryImport.py
 ```
@@ -52,6 +54,7 @@ docker exec -it jupyter python /home/jovyan/scripts/categoryImport.py
 This can take quite a long time (maybe 25 minutes)
 Loading over 1.2 million rows with a category name lookup for each product
 ```bash
+The redis node and port can be changed. The python code uses 2 environment variable REDIS_SERVER and REDIS_PORT.  The default is REDIS_SERVER=redis and REDIS_PORT=6379
 docker exec -it jupyter python /home/jovyan/scripts/productImport.py
 ```
 ### run queries  from redis-cli
