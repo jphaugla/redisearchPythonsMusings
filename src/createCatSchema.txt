@@ -1,1 +1,0 @@
-ft.create category ON HASH PREFIX 1 Category: schema ID TEXT lowpic TEXT NOINDEX thumbpic TEXT NOINDEX name TEXT 

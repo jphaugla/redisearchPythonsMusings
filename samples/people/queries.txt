@@ -1,0 +1,7 @@
+# Every document that has a construction value of exactly 42000
+FT.SEARCH permits "@construction_value:[42000,42000]"
+# Performing a text search on all text fields
+FT.SEARCH permits "veranda"
+# A fuzzy text search on all text fields
+FT.SEARCH permits "%%haus%%" 
+

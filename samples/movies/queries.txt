@@ -1,0 +1,33 @@
+# add withscores to get the scores
+FT.SEARCH idx:movie "war" WITHSCORES RETURN 3 title release_year rating
+FT.SEARCH idx:movie "war" WITHSCORES RETURN 3 title release_year rating EXPLAINSCORE
+FT.SEARCH idx:movie "@title:war" RETURN 3 title release_year rating
+FT.SEARCH idx:movie "emp*" RETURN 3 title release_year rating
+FT.SEARCH idx:movie "%gdfather%" RETURN 3 title release_year rating
+FT.SEARCH idx:movie "war |  %gdfather% " RETURN 3 title release_year rating
+FT.SEARCH idx:movie "@genre:{Drama}" RETURN 3 title release_year rating
+HINCRBYFLOAT movie:11002 rating 0.1
+FT.SEARCH idx:movie "war -jedi" RETURN 2 title release_year
+FT.SEARCH idx:movie "@genre:{Thriller}" RETURN 2 title release_year
+FT.SEARCH idx:movie "@genre:{Thriller|Action}" RETURN 2 title release_year
+FT.SEARCH idx:movie "@genre:{Thriller|Action} @title:-jedi" RETURN 2 title release_year
+FT.SEARCH idx:movie * FILTER release_year 1970 1980 RETURN 2 title release_year
+FT.SEARCH idx:movie "@release_year:[1970 1980]" RETURN 2 title release_year
+# To exclude a value prepend it with (
+# this is good count value
+FT.SEARCH idx:movie "*" LIMIT 0 0
+FT.SEARCH idx:movie "never" RETURN 2 title release_year
+HSET movie:11033 title "Tomorrow Never Dies - 007"
+ft.search "idx:movie" "@title:(heat -california)" 
+ft.search idx:movie @title:heat 
+FT.SEARCH "idx:movie" "heat" RETURN 2 title plot
+FT.SEARCH "idx:movie" "@title:(heat) @genre:{Drama} " RETURN 3 title plot genre
+ FT.SEARCH "idx:movie" "@title:(heat)  @genre:{Drama|Comedy} " RETURN 3 title plot genre
+FT.SEARCH "idx:movie" "@title:(heat) | @genre:{Drama|Comedy} " RETURN 3 title plot genre
+FT.SEARCH "idx:movie" "@genre:{Mystery|Thriller} (@release_year:[2018 2018] | @release_year:[2014 2014] )"   RETURN 3 title release_year genre
+FT.SEARCH "idx:movie" "@genre:{Action}"  SORTBY release_year DESC RETURN 2 title release_year
+FT.SEARCH "idx:movie" "@genre:{Action}" LIMIT 0 100  SORTBY release_year ASC RETURN 2 title release_year
+FT.SEARCH "idx:movie" "@genre:{Action}" LIMIT 100 200  SORTBY release_year ASC RETURN 2 title release_year
+FT.SEARCH "idx:movie" "@genre:{Action}" LIMIT 0 0
+FT.SEARCH "idx:movie" "@genre:{Action}" FILTER release_year 2017 2017 LIMIT 0 0
+FT.SEARCH "idx:theater" "@location:[-73.9798156 40.7614367 400 m]" RETURN 2 name address

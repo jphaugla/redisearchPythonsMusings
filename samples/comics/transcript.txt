@@ -1,0 +1,70 @@
+In our exploration of query, we haven't paid much attention
+to the actual results of our queries
+or how they are ordered.
+In this section, we'll start to crack
+the shell of this expansive topic
+by exploring field weights and document scores,
+as well as optional clauses and query weights.
+We will touch on some of the internals
+that RediSearch uses to calculate ordering.
+First, let's conceptually talk about field weights.
+Let's make a mental example.
+Say you are in charge of an electronic store that
+sells both media and equipment.
+In your online catalog, you have both televisions and Blu-rays
+of television shows.
+Consider this.
+The first item is a television.
+The second item is a television show.
+If you type "television" into the search bar,
+you will probably not want to find
+a Blu-ray DVD of Twin Peaks.
+And likewise, if you search for Twin Peaks,
+you don't really want a 55" Samsung television.
+In both cases, they would match, but the ordering
+would be dependent on what is most important.
+To solve this, you would want to make the content in the item
+title more important than the content in the description.
+This is an example of the title being heavier field weight.
+At its most elemental level, field weight
+allows for documents with the keyword
+in the highly-weighted field to come before the keywords
+in the lower-weighted field.
+In our mini example, say we weighted the item title higher
+than the item description.
+Then, searching for "television" would first
+show the TV, and then the Blu-ray.
+Searching for Twin Peaks would first show the Blu-ray, then
+the television.
+That's the concept for field weights
+from a technical perspective.
+We'll go into it more in detail during our section on schema
+creation.
+Right now, however, you just need
+to know that individual fields have weights,
+and higher weights affect the position of the documents
+in the return results.
+Often confused with field weights is documents scores.
+Scores are document-wide numeric values
+that affect the position of the document in the result set.
+If you have two documents that match the query in exactly
+the same way, the document with the higher score
+will come first.
+Document scores can reflect any aspect
+you want, but are primarily used to indicate higher quality
+or some promoted content that may
+be unable to be reflected in the document itself.
+Let's return to our conceptual example
+of the electronic store.
+The store is running a special on the Twin Peaks Blu-ray,
+and you advertised this price.
+So you expect if someone searches
+for Twin Peaks, that's the item that they are searching for.
+In this case, you'd want to have the document score be higher
+than the rest of the items in your catalog.
+From a technical perspective, document scores
+are set when adding a document or doing an upsert.
+They affect the entire document and are relevant for the sort
+order of the document.
+We'll cover this in more detail later in the course
+when we discuss document ingestion.

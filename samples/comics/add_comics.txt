@@ -1,0 +1,2 @@
+HSET "spiderman" rating 1.0 name "Spiderman" type "hero" edition 1 released 1962 desc "Spiderman is a fictional super hero created by writer-editor Stan Lee and writer-artist Steve Ditko."
+HSET "batman" rating 1.0 name "Batman" type "dark" edition 1 released 1939 desc "Batman is a fictional hero appearing in American comic books published by DC Comics. The character was created by artist Bob Kane and writer Bill Finger."

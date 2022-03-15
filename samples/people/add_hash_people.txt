@@ -1,0 +1,4 @@
+hset person:1 doc_score 0.9 name Marta age 31 profession exobiologist location "31.433363,35.331942"
+hset person:2 name Thomas age 41 profession "communications officer" location "21.143393,37.081922"
+hset person:3 name Ivo age 42 profession drummer location "8.306363,15.937542"
+hset person:4 name Eva age 28 profession surfer location "38.941641, -9.416408"

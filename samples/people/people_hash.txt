@@ -1,0 +1,1 @@
+FT.CREATE people ON HASH PREFIX 1 "person:" SCORE 0.5 SCORE_FIELD "_score" SCHEMA "_score" NUMERIC SORTABLE "age" NUMERIC SORTABLE "name"  TEXT NOSTEM "profession" TAG SEPARATOR ";" "location" GEO

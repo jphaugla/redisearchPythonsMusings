@@ -1,0 +1,1 @@
+FT.CREATE comics SCORE_FIELD rating SCHEMA name TEXT type TEXT edition NUMERIC released NUMERIC desc TEXT

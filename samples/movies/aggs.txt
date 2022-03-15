@@ -1,0 +1,9 @@
+# Number of movies by year
+FT.AGGREGATE "idx:movie" "*" GROUPBY 1 @release_year REDUCE COUNT 0 AS nb_of_movies SORTBY nb_of_movies
+# sort by number of movies descending
+FT.AGGREGATE "idx:movie" "*" GROUPBY 1 @release_year REDUCE COUNT 0 AS nb_of_movies SORTBY 2 @nb_of_movies DESC
+# Number of movies by year from the most recent to the oldest
+FT.AGGREGATE "idx:movie" "*" GROUPBY 1 @release_year REDUCE COUNT 0 AS nb_of_movies SORTBY 2 @release_year DESC 
+# Number of movies by genre, with the total number of votes, and average rating
+FT.AGGREGATE idx:movie "*" GROUPBY 1 @genre REDUCE COUNT 0 AS nb_of_movies REDUCE SUM 1 votes AS nb_of_votes REDUCE AVG 1 rating AS avg_rating SORTBY 4 @avg_rating DESC @nb_of_votes DESC
+FT.AGGREGATE idx:user "@gender:{female}" GROUPBY 1 @country REDUCE COUNT 0 AS nb_of_users SORTBY 2 @nb_of_users DESC

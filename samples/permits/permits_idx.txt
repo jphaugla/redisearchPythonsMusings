@@ -1,0 +1,1 @@
+FT.CREATE permits ON HASH PREFIX 1 "tst:" SCORE_FIELD "_score" SCHEMA "_score" NUMERIC SORTABLE "permit_timestamp" NUMERIC SORTABLE "address_street" AS street TEXT NOSTEM "address_city" AS city TAG SORTABLE "description" TEXT "building_type" TEXT WEIGHT 20 NOSTEM SORTABLE "work_type" TAG SEPARATOR ";" "construction_value" NUMERIC SORTABLE "location" GEO

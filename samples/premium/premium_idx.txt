@@ -1,0 +1,1 @@
+FT.CREATE premium_customers ON HASH PREFIX 3 "users:" "customers:" "visitors:" FILTER "@total_spent>=1000" SCHEMA "total_spent" NUMERIC SORTABLE "name"  TEXT NOSTEM SORTABLE

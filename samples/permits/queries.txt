@@ -1,0 +1,18 @@
+# Every document that has a construction value of exactly 42000
+FT.SEARCH permits "@construction_value:[42000,42000]"
+# Performing a text search on all text fields
+FT.SEARCH permits "veranda"
+# A fuzzy text search on all text fields
+FT.SEARCH permits "%%haus%%" 
+# on specific field
+FT.SEARCH permits "@building_type:detached"
+# tag search
+FT.SEARCH permits "@city:{Lisbon}"
+# this is OR on two work types
+FT.SEARCH permits "@work_type:{construction|design}"
+# this is and on two but on same tag
+FT.SEARCH permits "@work_type:{construction} @work_type:{design}"
+# AND on two different fields
+FT.SEARCH permits "@building_type:house @description:new"
+# OR on two fields
+FT.SEARCH permits "(@city:{Lagos})|(@description:detached)"

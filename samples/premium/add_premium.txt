@@ -1,0 +1,4 @@
+hmset users:1 name "alfred alfredo" total_spent 20000
+hmset users:2 name "minnie pearl" total_spent 200
+hmset users:3 name "elizabeth warren" total_spent 2000
+hmset users:4 name "tilley fossen" total_spent 3000
