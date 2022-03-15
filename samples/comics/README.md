@@ -1,7 +1,7 @@
 # Scoring and Relevancy example
 ## Redis University Link
 * [Redis University Link](https://university.redis.com/courses/course-v1:redislabs+RU201+SP_2019_01/courseware/f00cc60d5c1b4e97bdf2eda8f8481e3d/8b573964589f4dee8aef9251a4aea87b/)
-* [text transcript file included from the redis university training as well](file://transcript.txt)
+* [text transcript file included from the redis university training as well](./transcript.txt)
 * Create Index
 ```bash
 redis-cli < create_idx.txt
