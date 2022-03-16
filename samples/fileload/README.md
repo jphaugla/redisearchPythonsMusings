@@ -1,3 +1,4 @@
+# fileload has python load scripts as well as phonetics, fuzzy, and slop queries
 ### create schema for phonetic test
 ```bash
 docker exec -i redis bash <<EOF

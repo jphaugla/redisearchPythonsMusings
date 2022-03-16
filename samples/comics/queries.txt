@@ -1,1 +1,2 @@
 FT.SEARCH "comics" "hero" WITHSCORES RETURN 2 type desc
+FT.SEARCH "comics" "@desc:batman" FILTER released 2020 2020 WITHSCORES RETURN 2 type desc

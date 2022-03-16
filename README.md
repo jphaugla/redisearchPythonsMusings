@@ -26,3 +26,10 @@ redis-cli get hello
 docker exec -it redis redis-cli set hello world
 docker exec -it redis redis-cli get hello
 ```
+## Samples 
+* [Comics - relevancy and scoring](samples/comics/README.md)
+* [Fileload - python phonetics, fuzzy, and slop](samples/comics/README.md)
+* [Movies - Large number of search queries and aggregations](samples/movies/README.md)
+* [People - Few queries including fuzzy](samples/people/README.md)
+* [Permits - Few queries including and/or as well as tags](samples/permits/README.md)
+* [Premium - shows multiple prefixes and Filter on create index](samples/premium/README.md)

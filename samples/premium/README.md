@@ -1,4 +1,5 @@
 # People related queries
+Has new create index options for multiple prefixes
 Just a few examples on a few hash records
 * add some premium has records
 ```bash
