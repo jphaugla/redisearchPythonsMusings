@@ -6,6 +6,8 @@
 * [redisearch documentation](https://oss.redis.com/redisearch/master/)
 * [redisearch github](https://github.com/Redislabs-Solution-Architects/redisaml#example-redisearch-queries)
 * [redisearch sample query github](https://github.com/Redislabs-Solution-Architects/contracts#sample-queries)
+* [redisearch client libraries](https://github.com/RediSearch/RediSearch#client-libraries)
+* [another redisearch client libraries](https://oss.redis.com/redisearch/Clients/)
 
 ## Initial project setup
 Get this github code
