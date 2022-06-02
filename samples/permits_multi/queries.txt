@@ -1,0 +1,11 @@
+HGETALL bld:sydney_opera
+# search all fields across all indexes
+FT.SEARCH permits:v3:_all "necessary"
+# search one column one index
+FT.SEARCH permits:v3:bld '@building_type:{opera house}' RETURN 2 _id ^work_requests
+FT.SEARCH permits:v3:bld '@building_type:{opera house}' RETURN 1 ^work_requests
+# use these work requests return in next query to filter by status
+FT.SEARCH permits:v3:prm "@\\^work_request:{ 1583504181\\#0 | 1586182581\\#0} @status:{approved}" RETURN 2 status reason 
+# all requests by person with first name of Max
+FT.SEARCH permits:v3:prsn "@first_name:Max" RETURN 2 "_id" "^work_requests"
+

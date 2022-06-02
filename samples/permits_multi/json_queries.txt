@@ -1,0 +1,10 @@
+JSON.GET bld:sydney_opera .
+# full text search for one word
+FT.SEARCH permits:v3:_all "necessary"
+# work request for opera house buildings
+FT.SEARCH permits:v3:bld '@building_type:{opera house}' RETURN 2 _id ^work_requests
+FT.SEARCH permits:v3:bld '@building_type:{opera house}' RETURN 1 ^work_requests
+# use work requests and use to get status
+FT.SEARCH permits:v3:wrk "((@request_timestamp: [1583504181 1583504181] @\\_id: [0 0]) | (@request_timestamp: [1586182581 1586182581] @\\_id: [0 0]))  @permit_status:{approved}" RETURN 2 permit_status permit_reason
+#  all requests by someone with first name Max
+FT.SEARCH permits:v3:prsn "@first_name:Max" RETURN 2 "_id" "^work_requests"
