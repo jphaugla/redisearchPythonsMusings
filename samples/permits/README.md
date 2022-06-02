@@ -1,6 +1,6 @@
 # Permits related queries
 Just a few examples on a few hash records
-* add some permits has records
+* add some permits hash records
 ```bash
 redis-cli < add_hash_permits.txt
 ```

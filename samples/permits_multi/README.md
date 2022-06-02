@@ -1,5 +1,42 @@
 # Permits multi-level related queries
-## Overview
+## Conceptual Model
+* Building: This is the building that should be constructed or on which construction work should happen. One building can have many construction work requests associated.
+* Work: The construction work which should be done. One construction work entity belongs to exactly one building. One such an entity can have precisely one permit.
+* Permit: The permit which was granted for requested construction work.
+* Requester: A permit is requested by one requesting person. Such a requester can request multiple permits.
+## Logical Model
+* Building
+  * type : Enum
+  * address : String
+  * location : Geo
+  * neighbourhood: String
+  * works: Set (0..n)
+
+* Work
+  * type : Enum
+  * request_timestamp : Time
+  * requester: Person (1)
+  * building : Building (1)
+  * descr : Text
+  * permit: Permit (1)
+
+* Permit
+  * status : Enum
+  * timestamp : Time
+  * reason: Text
+  * work : Work (1)
+
+* Person
+  * first_name : String
+  * middle_name : String
+  * last_name : String
+  * birth_day : String
+  * address : String
+  * phone : String
+  * email : String
+  * work : Work (1..n)
+
+## Different Approaches
 * One index or multiple indices. 
   *  most natural decision would be to create one index per 
   * RediSearch DOESN'T allow you to query across indices. 
@@ -17,7 +54,7 @@
   * RediSearch does not support indexing of multi-values (scalar values or objects nested in arrays), with the exception of TAGs.
 
 Just a few examples on a few hash records
-* add some permits has records
+* add some permits hash records
 ```bash
 redis-cli < add_hash_permits.txt
 ```

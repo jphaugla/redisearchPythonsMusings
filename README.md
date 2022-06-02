@@ -1,5 +1,5 @@
 # redisearchPythonsMusings
-#  the product category part of this has been superseded by a new combined JSON and search version [redis JSON and Search](https://github.com/jphaugla/redisJSONProductCatalog)
+The product category part of this has been superseded by a new combined JSON and search version [redis JSON and Search](https://github.com/jphaugla/redisJSONProductCatalog)
 ## helpful links
 * [redisearch 2.0 getting started blog](https://redis.com/blog/getting-started-with-redisearch-2-0/)
 * [redisearch 2.0 getting started github](https://github.com/RediSearch/redisearch-getting-started)
