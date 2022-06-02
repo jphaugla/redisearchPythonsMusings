@@ -1,0 +1,4 @@
+FT.CREATE "categories:tags" ON HASH SCHEMA main TAG sub TAG SEPARATOR ";"
+HSET spiderman __score 0.7 main "comic" sub "hero;avengers"
+HSET superman __score 0.8 main "comic" sub "hero;dc"
+HSET batman __score 1.0 main "comic" sub "dark;dc"

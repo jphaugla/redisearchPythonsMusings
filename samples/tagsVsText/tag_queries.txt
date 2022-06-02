@@ -1,0 +1,4 @@
+FT.SEARCH categories:tags "@sub:{ hero | dark }" NOCONTENT
+FT.SEARCH categories:tags "@sub:{ dark }" NOCONTENT
+FT.EXPLAINCLI categories:tags "@sub:{ dark }"
+

@@ -1,0 +1,4 @@
+FT.CREATE userIdx ON JSON SCHEMA $.user.name AS name TEXT $.user.email AS email  TAG
+JSON.SET myuser $ '{ "user":{"name": "Paul John", "email": "paul.john@example.com", "age": "4", "country": "London" }}'
+FT.CREATE orgIdx ON JSON SCHEMA $.address[0] AS a1 TEXT $.address[1] AS a2 TEXT
+JSON.SET org:1 $ '{ "name": "Home Address", "address": [ "Orbital Park","Hounslow" ], "pincode": "TW4 6JS" }'

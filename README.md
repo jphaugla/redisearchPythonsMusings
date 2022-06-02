@@ -36,3 +36,4 @@ docker exec -it redis redis-cli get hello
 * [Permits - Few queries including and/or as well as tags](samples/permits/README.md)
 * [Permits_multi - Data modeling issues with single or multiple indexes](samples/permits_multi/README.md)
 * [Premium - shows multiple prefixes and Filter on create index](samples/premium/README.md)
+* [tagsVsText - shows tagging and text with hashes and json](samples/tagsVsText/README.md)

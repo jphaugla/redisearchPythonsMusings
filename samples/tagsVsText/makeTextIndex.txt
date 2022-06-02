@@ -1,0 +1,4 @@
+FT.CREATE "categories:txt" ON HASH SCHEMA main TEXT sub TEXT
+HSET spiderman __score 0.7 main "comic" sub "hero"
+HSET superman __score 0.8 main "comic" sub "hero"
+HSET batman __score 1.0 main "comic" sub "dark"

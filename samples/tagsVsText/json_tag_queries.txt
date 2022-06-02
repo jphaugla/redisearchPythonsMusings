@@ -1,0 +1,8 @@
+# return all
+FT.SEARCH userIdx '@name:(John)'
+# return one attribute
+FT.SEARCH userIdx '@name:(John)' RETURN 1 name
+# parse the json path on return
+FT.SEARCH userIdx '@name:(John)' RETURN 1 $.user.email
+# parse the array
+ FT.SEARCH orgIdx "Orbital Park"

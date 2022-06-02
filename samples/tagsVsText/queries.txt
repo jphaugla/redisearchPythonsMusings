@@ -1,0 +1,4 @@
+# this is the search
+FT.SEARCH categories:txt "@sub:dark" NOCONTENT
+#
+FT.EXPLAINCLI categories:txt "@sub:dark"
