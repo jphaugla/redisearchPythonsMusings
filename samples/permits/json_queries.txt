@@ -1,0 +1,18 @@
+FT.SEARCH permits "@construction_value:[42000,42000]"
+# fuzzy text search
+FT.SEARCH permits "%%haus%%"
+# specific column
+FT.SEARCH permits "@building_type:detached"
+# tag search
+FT.SEARCH permits "@city:{Lisbon}"
+# multiple tags (OR condition)
+FT.SEARCH permits "@work_type:{construction|design}"
+# multiple tags (AND condition)
+FT.SEARCH permits "@work_type:{construction} @work_type:{design}"
+# AND search
+FT.SEARCH permits "@building_type:house @description:new"
+# combined search on two fields-OR
+FT.SEARCH permits "(@city:{Lagos})|(@description:detached)"
+# spelling
+FT.SPELLCHECK permits "housa" 
+
