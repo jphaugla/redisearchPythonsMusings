@@ -1,7 +1,9 @@
 # Permits_large 
 has python load scripts and data files
 ### unzip data file
+```bash
 gunzip data.csv.gz
+```
 ### add requirements
 ```bash
 docker exec -it jupyter pip install -r /home/jovyan/permits_large/requirements.txt
