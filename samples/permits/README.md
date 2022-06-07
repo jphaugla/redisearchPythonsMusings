@@ -9,6 +9,7 @@ redis-cli < add_hash_permits.txt
 redis-cli < permits_idx.txt
 ```
 * finally, run some queries out of *queries.txt*
+* note:  can also run these queries against the larger permits_large dataset
 moodle introduction quickstart
 
 #  JSON permits
