@@ -1,0 +1,1 @@
+FT.CREATE myIndex ON hash PREFIX 1 "file:" schema title TEXT body TEXT phoneticBody TEXT PHONETIC "dm:en"

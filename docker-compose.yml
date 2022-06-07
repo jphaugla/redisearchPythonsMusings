@@ -7,13 +7,14 @@ services:
       - "6379:6379"
     volumes:
       - ./redis:/data
-      - ./src/:/src
+      - ./samples/fileload/:/fileload
+      - ./samples/fileload/data:/fileload/data
 
   jupyter:
     image: jupyter/minimal-notebook
     volumes:
-      - ./src/:/home/jovyan/scripts
-      - ./data:/home/jovyan/data
+      - ./samples/fileload/:/home/jovyan/fileload
+      - ./samples/permits_large/:/home/jovyan/permits_large
     ports:
       - 8888:8888
       - 5000:5000
