@@ -1,0 +1,8 @@
+# What are the permits between 1970-01-01 and 2009-10-01?
+FT.SEARCH permits "@permit_timestamp:[0 1254391200]" RETURN 1 permit_timestamp LIMIT 0 3
+# same query but with the filter clause instead but is deprecated
+FT.SEARCH permits "*" FILTER permit_timestamp 0 1254391200 RETURN 1 permit_timestamp LIMIT 0 3
+# veranda search
+FT.SEARCH permits "veranda @permit_timestamp:[0 1254391200]"
+# explain plan for veranda
+FT.EXPLAINCLI permits "veranda @permit_timestamp:[0 1254391200]"
