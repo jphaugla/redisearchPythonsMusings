@@ -1,4 +1,5 @@
-# fileload has python load scripts as well as phonetics, fuzzy, and slop queries
+# fileload 
+has python load scripts as well as phonetics, fuzzy, and slop queries
 ### create schema for phonetic test
 ```bash
 redis-cli < create_idx.txt
