@@ -1,0 +1,15 @@
+# get
+FT.GET olap ber:1577836800
+# cities of a country
+FT.AGGREGATE olap * GROUPBY 1 @country REDUCE TOLIST 1 @city AS cities
+# population by country
+FT.AGGREGATE olap * GROUPBY 1 @country REDUCE SUM 1 @population AS total_population
+# population by state
+FT.AGGREGATE olap * GROUPBY 1 @state REDUCE SUM 1 @population AS total_population
+# population by state only in USA
+FT.AGGREGATE olap "@country:{usa}" GROUPBY 1 @state REDUCE SUM 1 @population AS total_population
+# population by year (did not work)
+FT.AGGREGATE olap * APPLY "year(@time)" AS year GROUPBY 1 @year REDUCE SUM 1 @population AS total_population
+# multi-dimensional (did not work)
+FT.AGGREGATE olap * APPLY "year(@time)" AS year GROUPBY 2 @year @state REDUCE SUM 1 @population AS total_population REDUCE AVG 1 @average_age AS avg_age SORTBY 2 @year DESC
+

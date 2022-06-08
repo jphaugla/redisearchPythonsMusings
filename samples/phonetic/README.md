@@ -7,12 +7,12 @@ Just a few examples on a few hash records
 * If the word begins with 'KN', 'GN', 'PN', 'AE', 'WR', drop the first letter!
 * Drop 'B' if it occurs after 'M' at the end of the word!
 
-* add some cities hash records
+* add some text hash records
 ```bash
-redis-cli < add_textredis-cli < phonetics_idx.txt
+redis-cli < add_text.txt
 ```
 * create index for records	
 ```bash
-redis-cli < phonetics_idx.txt
+redis-cli < phonetic_idx.txt
 ```
 * finally, run some queries out of *queries.txt*

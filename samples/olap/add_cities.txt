@@ -1,0 +1,5 @@
+HSET sfo:1577836800 country USA state CA city "San Francisco" time 1577836800 population 805235 average_age 39
+HSET sfo:1420070400 country USA state CA city "San Francisco" time 1420070400 population 866320 average_age 38
+HSET lax:1577836800 country USA state CA city "Los Angeles" time 1577836800 population 12447000 average_age 37
+HSET muc:1577836800 country DEU state BY city "Munic" time 1577836800 population 1472000 average_age 42
+HSET ber:1577836800 country DEU state BER city "Berlin" time 1577836800 population 3769000 average_age 44
