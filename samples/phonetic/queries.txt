@@ -1,0 +1,8 @@
+# phonetics john search
+FT.SEARCH phonetics "john" RETURN 1 text
+# instead do non-phonetics
+FT.SEARCH phonetics "(john) => {$phonetic: false}" NOCONTENT
+# debug double metaphone
+FT.DEBUG DUMP_PHONETIC_HASH "trent"
+FT.DEBUG DUMP_PHONETIC_HASH "toronto"
+

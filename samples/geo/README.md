@@ -6,6 +6,6 @@ redis-cli < add_cities.txt
 ```
 * create index for records	
 ```bash
-redis-cli < citiesjidx.txt
+redis-cli < cities_idx.txt
 ```
 * finally, run some queries out of *queries.txt*

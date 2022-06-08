@@ -1,0 +1,1 @@
+FT.CREATE phonetics ON HASH PREFIX 1 "pt:" SCHEMA text TEXT PHONETIC "dm:en"

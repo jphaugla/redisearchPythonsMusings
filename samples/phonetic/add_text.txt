@@ -1,0 +1,4 @@
+HSET "pt:george" "text" "george"
+HSET "pt:garage" "text" "garage"
+HSET "pt:john" "text" "john"
+HSET "pt:jon" "text" "jon"
