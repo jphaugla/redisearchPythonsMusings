@@ -1,0 +1,2 @@
+# radius query
+FT.SEARCH cities "@coords:[2.34 48.86 1000 km]"

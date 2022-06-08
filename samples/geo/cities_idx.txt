@@ -1,0 +1,1 @@
+FT.CREATE cities ON HASH PREFIX 1 "ct:" SCHEMA city TEXT coords GEO

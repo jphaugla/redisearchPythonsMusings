@@ -1,0 +1,3 @@
+HSET ct:london city "London" coords "-0.12,51.50"
+HSET ct:sfo city "San Francisco" coords "-122.44,37.76"
+HSET ct:paris city "Paris" coords "2.33,48.86"
