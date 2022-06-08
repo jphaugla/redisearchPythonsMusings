@@ -1,0 +1,6 @@
+FT.SUGGET compl:heroes "super"
+FT.SUGGET compl:heroes "super" WITHSCORES
+# fuzzy
+FT.SUGGET compl:heroes "cat" FUZZY
+
+

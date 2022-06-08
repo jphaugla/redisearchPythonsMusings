@@ -1,0 +1,5 @@
+FT.SUGADD compl:heroes "superwoman" 2.0
+FT.SUGADD compl:heroes "superman" 1.0
+FT.SUGADD compl:heroes "wonder woman" 2.0
+FT.SUGADD compl:heroes "batman" 2.0
+FT.SUGADD compl:heroes "catwomen" 3.0
