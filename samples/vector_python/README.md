@@ -17,3 +17,6 @@ Run a VSS query
 ```bash
 redis-cli < vss_query.txt
 ```
+[Blog on vector similarity search](https://redis.com/blog/rediscover-redis-for-vector-similarity-search/)
+
+
