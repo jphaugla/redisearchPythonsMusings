@@ -15,6 +15,7 @@ services:
     volumes:
       - ./samples/fileload/:/home/jovyan/fileload
       - ./samples/permits_large/:/home/jovyan/permits_large
+      - ./samples/vector_python/:/home/jovyan/vector_python
     ports:
       - 8888:8888
       - 5000:5000
