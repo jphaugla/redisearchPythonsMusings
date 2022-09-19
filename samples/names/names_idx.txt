@@ -1,0 +1,1 @@
+FT.CREATE users_idx ON HASH PREFIX 1 "users:"  SCHEMA "total_spent" NUMERIC SORTABLE "name"  TEXT NOSTEM SORTABLE "item_created" NUMERIC SORTABLE

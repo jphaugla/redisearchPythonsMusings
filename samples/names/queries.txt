@@ -1,0 +1,2 @@
+FT.search users_idx "man" return 1 name
+ft.search users_idx "(man*) @item_created:[1663387200000 1663473599000]" return 1 name

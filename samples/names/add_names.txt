@@ -1,0 +1,8 @@
+hmset users:1 name "Mandy alfredo" total_spent 20000 item_created 1663387200001
+hmset users:2 name "Mangola pearl" total_spent 200 item_created 1663387200005
+hmset users:3 name "elizabeth warren" total_spent 2000 item_created 1663387200004
+hmset users:4 name "tilley fossen" total_spent 3000 item_created 1663387200003
+hmset users:5 name "Mandy" total_spent 20000 item_created 1663387200001
+hmset users:6 name "Mangola" total_spent 200 item_created 1663387200005
+hmset users:7 name "elizabeth" total_spent 2000 item_created 1663387200004
+hmset users:8 name "tilley" total_spent 3000 item_created 1663387200003
