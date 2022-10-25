@@ -1,0 +1,4 @@
+redis-om
+pydantic~=1.10.2
+pydantic[email]
+validate_email
