@@ -1,4 +1,4 @@
-version: '3'
+version: '3.9'
 services:
   redis:
     image: "redis/redis-stack:latest"
@@ -11,11 +11,12 @@ services:
       - ./samples/fileload/data:/fileload/data
 
   jupyter:
-    image: jupyter/minimal-notebook
+    image: jupyter/scipy-notebook
     volumes:
       - ./samples/fileload/:/home/jovyan/fileload
       - ./samples/permits_large/:/home/jovyan/permits_large
       - ./samples/vector_python/:/home/jovyan/vector_python
+      - ./samples/pythonOM/:/home/jovyan/pythonOM
     ports:
       - 8888:8888
       - 5000:5000
@@ -23,6 +24,7 @@ services:
     environment:
       - REDIS_SERVER=redis
       - REDIS_PORT=6379
+      - REDIS_OM_URL=redis://redis:6379
     depends_on:
       - redis
 
