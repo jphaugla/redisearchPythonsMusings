@@ -1,0 +1,10 @@
+HGETALL bld:sydney_opera
+FT.SEARCH permits:v3:_all "necessary"
+ECHO "Return the work requests of 'opera house' buildings:"
+FT.SEARCH permits:v3:bld '@building_type:{opera house}' RETURN 2 _id ^work_requests
+ECHO "Reconstruct the permit keys from the just gathered information:"
+
+MULTI
+HGETALL "prm:sydney_opera:1583504181#0"
+HGETALL "prm:sydney_opera:1586182581#0"
+EXEC

@@ -1,0 +1,3 @@
+FT.SUGADD ac:buildings house 1
+FT.SUGADD ac:buildings apartment 1
+FT.SUGGET ac:buildings ho

@@ -1,0 +1,5 @@
+FT.AGGREGATE beers "*" GROUPBY 1 "@style_name" REDUCE AVG 1 "@abv" AS syntheticColumn0 LIMIT 0 10000 WITHCURSOR COUNT 1000
+FT.SEARCH beers "@name:Oatmeal*" RETURN 5 name abv descript style_name ibu LIMIT 0 10000
+"FT.SEARCH" "beers" "@abv:[(3.0 inf]" "RETURN" "5" "name" "abv" "descript" "style_name" "ibu" "LIMIT" "0" "10000"
+"FT.SEARCH" "beers" "(@abv:[(3.0 inf] @name:Oatmeal*)" "RETURN" "5" "name" "abv" "descript" "style_name" "ibu" "LIMIT" "0" "10000"
+"FT.AGGREGATE" "beers" "(@abv:[(3.0 inf] @name:Oatmeal*)" "GROUPBY" "0" "REDUCE" "COUNT" "0" "AS" "syntheticColumn0" "LIMIT" "0" "10000" "WITHCURSOR" "COUNT" "1000"

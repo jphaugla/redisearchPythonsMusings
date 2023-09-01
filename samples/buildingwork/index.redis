@@ -1,0 +1,11 @@
+FT.CREATE permits:v3:bld ON HASH PREFIX 1 "bld:" SCHEMA _id TEXT NOSTEM _type TAG building_type TAG address TEXT NOSTEM location GEO neighbourhood TEXT NOSTEM ^work_requests TAG
+
+FT.CREATE permits:v3:wrk ON HASH PREFIX 1 "wrk:" SCHEMA _id NUMERIC _type TAG work_type TAG request_timestamp NUMERIC descr TEXT ^requester TAG ^building TAG
+
+FT.CREATE permits:v3:prm ON HASH PREFIX 1 "prm:" SCHEMA _type TAG status TAG timestamp NUMERIC reason TEXT ^building TAG ^work_request TAG
+
+FT.CREATE permits:v3:prsn ON HASH PREFIX 1 "prsn:" SCHEMA _id TEXT NOSTEM _type TAG first_name TEXT NOSTEM middle_name TEXT NOSTEM last_name TEXT NOSTEM birth_day NUMERIC email TEXT NOSTEM ^work_requests TAG
+
+FT.CREATE permits:v3:_all ON HASH PREFIX 4 "bld:" "wrk:" "prm:" "prsn:" SCHEMA _type TAG address TEXT NOSTEM neighbourhood TEXT NOSTEM descr TEXT reason TEXT first_name TEXT NOSTEM middle_name TEXT NOSTEM last_name TEXT NOSTEM
+
+
